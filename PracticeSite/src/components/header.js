@@ -33,6 +33,8 @@ const Header = ({ siteTitle }) => (
             src={gatsbyLogo}
             alt="gatsbyLogo"
           />
+          <br />
+          {siteTitle}
         </Link>
       </h1>
     </div>
