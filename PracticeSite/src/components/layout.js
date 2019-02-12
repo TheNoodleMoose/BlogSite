@@ -6,19 +6,21 @@ import Header from "./header";
 import "./layout.css";
 import Archive from "./archive";
 
+const SITE_TITLE_QUERY = graphql`
+  query SiteTitleQuery {
+    site {
+      siteMetadata {
+        title
+        description
+        author
+      }
+    }
+  }
+`;
+
 const Layout = ({ children }) => (
   <StaticQuery
-    query={graphql`
-      query SiteTitleQuery {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-          }
-        }
-      }
-    `}
+    query={SITE_TITLE_QUERY}
     render={data => (
       <>
         <Header siteTitle={data.site.siteMetadata.title} />

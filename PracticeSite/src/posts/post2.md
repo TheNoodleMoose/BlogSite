@@ -1,8 +1,8 @@
 ---
-slug: "/second-post"
+slug: "second-post"
 id: "2"
 title: "My Second Post"
-date: "2019-2-10"
+date: "2019-2-11"
 ---
 
 # Second Post!

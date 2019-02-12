@@ -1,40 +1,47 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { StaticQuery, graphql } from "gatsby";
 
-const Archive = () => (
-  <StaticQuery
-    query={graphql`
-      query BlogPostArchive {
-        allMarkdownRemark {
-          edges {
-            node {
-              frontmatter {
-                title
-                slug
-                id
-              }
-            }
+import { StaticQuery, graphql } from "gatsby";
+import { Link } from "gatsby";
+
+const POST_ARCHIVE_QUERY = graphql`
+  query BlogPostArchive {
+    allMarkdownRemark(
+      limit: 5
+      sort: { order: DESC, fields: [frontmatter___date] }
+    ) {
+      edges {
+        node {
+          frontmatter {
+            title
+            slug
+            id
           }
         }
       }
-    `}
+    }
+  }
+`;
+
+const Archive = () => (
+  <StaticQuery
+    query={POST_ARCHIVE_QUERY}
     render={({ allMarkdownRemark }) => (
       <>
         <aside>
           <h3>Archive</h3>
-          {allMarkdownRemark.edges.map(post => (
-            <li key={post.node.frontmatter.id}>
-              {post.node.frontmatter.title}
-            </li>
-          ))}
+          <ul>
+            {allMarkdownRemark.edges.map(post => (
+              <li key={post.node.frontmatter.slug}>
+                <Link to={`/posts/${post.node.frontmatter.slug}`}>
+                  {post.node.frontmatter.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </aside>
       </>
     )}
   />
 );
-Archive.propTypes = {
-  children: PropTypes.node.isRequired
-};
 
 export default Archive;
