@@ -1,52 +1,57 @@
 import { Link } from "gatsby";
-import PropTypes from "prop-types";
 import React from "react";
+import styled from "styled-components";
 
-import gatsbyLogo from "../images/gatsby-icon.png";
+import logo from "../images/profile_pic.png";
 
 const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
+  <HeaderWrapper>
+    <HeaderContainer>
+      <HeaderTitle>
         <Link
           to="/"
           style={{
             color: `white`,
-            textDecoration: `none`
+            textDecoration: `none`,
+            display: `flex`,
+            flexDirection: "row",
+            justifyContent: `flex-start`,
+            alignItems: `center`
           }}
         >
           <img
             style={{
-              width: "100px"
+              width: "100px",
+              height: "auto",
+              borderRadius: `50%`
             }}
-            src={gatsbyLogo}
-            alt="gatsbyLogo"
+            src={logo}
+            alt="ChristianHuffman"
           />
           <br />
           {siteTitle}
         </Link>
-      </h1>
-    </div>
-  </header>
+      </HeaderTitle>
+    </HeaderContainer>
+  </HeaderWrapper>
 );
 
-Header.propTypes = {
-  siteTitle: PropTypes.string
-};
-
-Header.defaultProps = {
-  siteTitle: ``
-};
-
 export default Header;
+
+const HeaderWrapper = styled.div`
+  background: rebeccapurple;
+  marginbottom: 1.45rem;
+`;
+
+const HeaderContainer = styled.div`
+  margin: 0 auto;
+  max-width: 960px;
+  padding: 1.45rem 1.0875rem;
+  img {
+    margin: 0px;
+  }
+`;
+
+const HeaderTitle = styled.h1`
+  margin: 0;
+`;

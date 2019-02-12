@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { StaticQuery, graphql } from "gatsby";
-
+import styled from "styled-components";
 import Header from "./header";
 import "./layout.css";
 import Archive from "./archive";
@@ -24,14 +24,7 @@ const Layout = ({ children }) => (
     render={data => (
       <>
         <Header siteTitle={data.site.siteMetadata.title} />
-        <div
-          style={{
-            margin: `0 auto`,
-            maxWidth: 960,
-            padding: `0px 1.0875rem 1.45rem`,
-            paddingTop: 0
-          }}
-        >
+        <MainLayout>
           <main>{children}</main>
           <Archive />
           <footer>
@@ -39,7 +32,7 @@ const Layout = ({ children }) => (
             {` `}
             <a href="https://www.gatsbyjs.org">Gatsby</a>
           </footer>
-        </div>
+        </MainLayout>
       </>
     )}
   />
@@ -50,3 +43,10 @@ Layout.propTypes = {
 };
 
 export default Layout;
+
+const MainLayout = styled.main`
+  max-width: 90%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+`;
