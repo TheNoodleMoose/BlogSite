@@ -39,8 +39,8 @@ const Header = ({ siteTitle }) => (
 export default Header;
 
 const HeaderWrapper = styled.div`
-  background: rebeccapurple;
-  marginbottom: 1.45rem;
+  background: #6585d4;
+  marginbottom: 2rem;
 `;
 
 const HeaderContainer = styled.div`

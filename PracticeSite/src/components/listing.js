@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, StaticQuery, graphql } from "gatsby";
-
+import styled from "styled-components";
 import SEO from "../components/seo";
 
 const LISTING_QUERY = graphql`
@@ -31,14 +31,36 @@ const Listing = () => (
       query={LISTING_QUERY}
       render={({ allMarkdownRemark }) =>
         allMarkdownRemark.edges.map(({ node }) => (
-          <article key={node.frontmatter.id}>
-            <Link to={`/posts/${node.frontmatter.slug}`}>
-              <h2>{node.frontmatter.title}</h2>
-            </Link>
-            <p>{node.frontmatter.date}</p>
-            <p>{node.excerpt}</p>
-            <Link to={`/posts/${node.frontmatter.slug}`}>Read More</Link>
-          </article>
+          <Post key={node.frontmatter.id}>
+            <PostContainer>
+              <Link to={`/posts/${node.frontmatter.slug}`}>
+                <PostTitle>{node.frontmatter.title}</PostTitle>
+              </Link>
+              <p>{node.excerpt}</p>
+              <InfoContainer>
+                <PostDate>{node.frontmatter.date}</PostDate>
+                <Link
+                  style={{
+                    background: `rgba(40, 61, 136, 0.3)`,
+                    color: `#29328d`,
+                    textDecoration: `none`,
+                    display: `flex`,
+                    flexDirection: "row",
+                    justifyContent: `center`,
+                    alignItems: `center`,
+                    width: `105px`,
+                    height: `20px`,
+                    fontSize: `14px`,
+                    borderRadius: `30px`,
+                    margin: `0 5px`
+                  }}
+                  to={`/posts/${node.frontmatter.slug}`}
+                >
+                  Read More
+                </Link>
+              </InfoContainer>
+            </PostContainer>
+          </Post>
         ))
       }
     />
@@ -46,3 +68,41 @@ const Listing = () => (
 );
 
 export default Listing;
+
+const Post = styled.article`
+  background: rgba(11, 34, 65, 0.3);
+  border-radius: 10px;
+  margin: 10px 0 46px 0;
+`;
+
+const PostContainer = styled.div`
+  margin: 10px;
+  color: #29328d;
+  font-size: 24px;
+  text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.25);
+`;
+
+const PostTitle = styled.h2`
+  text-decoration: underline #e5e5e5;
+  color: #29328d;
+`;
+
+const PostDate = styled.p`
+  background: rgba(40, 61, 136, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  width: 105px;
+  height: 20px;
+  font-size: 14px;
+  margin: 0 5px;
+`;
+
+const InfoContainer = styled.div`
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-bottom: 10px;
+`;

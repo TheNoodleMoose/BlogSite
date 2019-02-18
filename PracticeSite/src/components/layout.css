@@ -1,5 +1,6 @@
+@import url("https://fonts.googleapis.com/css?family=Magra");
 html {
-  font-family: sans-serif;
+  font-family: "Magra", sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
