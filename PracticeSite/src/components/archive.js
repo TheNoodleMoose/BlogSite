@@ -51,4 +51,5 @@ const ArchiveContainer = styled.aside`
   margin: 10px 30px;
   background: rgba(11, 34, 65, 0.3);
   border-radius: 15px;
+  text-align: center;
 `;
