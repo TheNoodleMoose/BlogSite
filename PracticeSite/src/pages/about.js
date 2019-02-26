@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "gatsby";
 import Layout from "../components/layout";
 
-const About = () => (
-  <Layout>
+const About = ({ location }) => (
+  <Layout location={location}>
     <div>
       <h1>About Me</h1>
       <p>

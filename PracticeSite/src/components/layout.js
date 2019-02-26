@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { StaticQuery, graphql } from "gatsby";
 import Img from "gatsby-image";
+import { Spring } from "react-spring/renderprops";
 import styled from "styled-components";
 import Header from "./header";
 import "./layout.css";
@@ -26,13 +27,25 @@ const SITE_TITLE_QUERY = graphql`
   }
 `;
 
-const Layout = ({ children }) => (
+const Layout = ({ children, location }) => (
   <StaticQuery
     query={SITE_TITLE_QUERY}
     render={data => (
       <>
         <Header siteTitle={data.site.siteMetadata.title} />
-        <Img fluid={data.file.childImageSharp.fluid} />
+        <Spring
+          from={{ height: location.pathname === "/" ? 100 : 200 }}
+          to={{
+            height: location.pathname === "/" ? 200 : 100
+          }}
+        >
+          {styles => (
+            <div style={{ overflow: "hidden", ...styles }}>
+              <Img fluid={data.file.childImageSharp.fluid} />
+            </div>
+          )}
+        </Spring>
+
         <MainLayout>
           <main>{children}</main>
           <Archive />
@@ -55,7 +68,7 @@ export default Layout;
 
 const MainLayout = styled.main`
   max-width: 90%;
-  margin: 0 auto;
+  margin: 1rem auto;
   display: grid;
   grid-template-columns: 4fr 1fr;
   @media (max-width: 1200px) {
