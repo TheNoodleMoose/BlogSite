@@ -73,6 +73,8 @@ const Post = styled.article`
   background: rgba(11, 34, 65, 0.3);
   border-radius: 10px;
   margin: 10px 0 46px 0;
+  -webkit-box-shadow: 0px 1px 15px 0px rgba(68, 68, 81, 0.6);
+  box-shadow: 0px 1px 15px 0px rgba(68, 68, 81, 0.6);
 `;
 
 const PostContainer = styled.div`
